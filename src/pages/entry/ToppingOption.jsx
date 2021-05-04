@@ -3,7 +3,7 @@ import {Col, Form, Row} from "react-bootstrap";
 
 function ToppingOption({ name, imagePath,updateItemCount }) {
   const handleChange = (e) => {
-    updateItemCount(name, e.target.value);
+    updateItemCount(name, e.target.checked?1:0);
   };
   return (
     <Col xs={12} sm={6} md={4} lg={3} style={{ textAlign: "center" }}>
@@ -20,10 +20,10 @@ function ToppingOption({ name, imagePath,updateItemCount }) {
         <Form.Label column xs="6" style={{ textAlign: "right" }}>
           {name}
         </Form.Label>
-        <Col xs="5" style={{ textAlign: "left" }}>
+        <Col xs="2" style={{ textAlign: "left" }}>
           <Form.Control
-            type="number"
-            defaultValue={0}
+            type="checkbox"
+            defaultValue={false}
             onChange={handleChange}
           ></Form.Control>
         </Col>

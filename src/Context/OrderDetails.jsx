@@ -56,7 +56,7 @@ export function OrderDetailsProvider(props) {
     function updateItemCount(itemName, newItemCount, optionType) {
       const newOptionCounts = { ...optionCounts };
       const optionCountsMap = newOptionCounts[optionType];
-      optionCountsMap.set(itemName, parseInt(newItemCount));
+        optionCountsMap.set(itemName, parseInt(newItemCount));
       setOptionCounts(newOptionCounts);
     }
     //getter: Object contianing options counts for scooping and topping, subtotal and total

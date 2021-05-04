@@ -73,20 +73,14 @@ test("Topping subtotal changes when toppings changes", async () => {
 });
 
 describe("Grand total", () => {
-  test("Grand total starts at 0", async () => {
+  test("Updates if add scoop first", async () => {
     render(<OrderEntry />);
+    //Grand total starts at 0
     const grandTotalHeading = await screen.findByRole("heading", {
       name: /grand total: \$/i,
     });
-    // we are awaiting because of a useEffect that is triggered inside ORder entry->orderDetauils component.
-    // only to avoid warning    
-    await waitFor(() => {
     expect(grandTotalHeading).toHaveTextContent("0.00");
-    })    
-  });
 
-  test("Updates if add scoop first", async () => {
-    render(<OrderEntry />);
     //make sure total starts at 0.00
     const scoopsSubtotal = screen.getByText("Scoops total: $", {
       exact: false,
@@ -100,9 +94,7 @@ describe("Grand total", () => {
     userEvent.clear(vanillaInput);
     userEvent.type(vanillaInput, "1");
     expect(scoopsSubtotal).toHaveTextContent("2.00");
-    const grandTotalHeading = await screen.findByRole("heading", {
-      name: /grand total: \$/i,
-    });
+   
     expect(grandTotalHeading).toHaveTextContent("2.00");
 
     //Make sure it starts at 0.00
